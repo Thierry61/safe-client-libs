@@ -328,7 +328,6 @@ checksum = "206fdffcfa2df7cbe15601ef46c813fce0965eb3286db6b56c583b814b51c81c"
 dependencies = [
  "byteorder",
  "iovec",
- "serde",
 ]
 
 [[package]]
@@ -444,31 +443,12 @@ dependencies = [
 
 [[package]]
 name = "crossbeam-channel"
-version = "0.3.9"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c8ec7fcd21571dc78f96cc96243cab8d8f035247c3efd16c687be154c3fa9efa"
-dependencies = [
- "crossbeam-utils 0.6.6",
-]
-
-[[package]]
-name = "crossbeam-channel"
 version = "0.4.2"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "cced8691919c02aac3cb0a1bc2e9b73d89e832bf9a06fc579d4e71b68a2da061"
 dependencies = [
- "crossbeam-utils 0.7.2",
+ "crossbeam-utils",
  "maybe-uninit",
-]
-
-[[package]]
-name = "crossbeam-utils"
-version = "0.6.6"
-source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "04973fa96e96579258a5091af6003abde64af786b860f18622b82e026cca60e6"
-dependencies = [
- "cfg-if",
- "lazy_static",
 ]
 
 [[package]]
@@ -1490,7 +1470,7 @@ dependencies = [
  "base64 0.10.1",
  "bincode",
  "bytes 0.5.4",
- "crossbeam-channel 0.4.2",
+ "crossbeam-channel",
  "derive_more",
  "directories 1.0.2",
  "err-derive",
@@ -1855,7 +1835,7 @@ dependencies = [
  "base64 0.11.0",
  "blake2b_simd",
  "constant_time_eq",
- "crossbeam-utils 0.7.2",
+ "crossbeam-utils",
 ]
 
 [[package]]
@@ -2045,9 +2025,9 @@ version = "0.41.0"
 dependencies = [
  "async-trait",
  "bincode",
- "bytes 0.4.12",
+ "bytes 0.5.4",
  "chrono",
- "crossbeam-channel 0.3.9",
+ "crossbeam-channel",
  "data-encoding",
  "directories 2.0.2",
  "env_logger 0.6.2",

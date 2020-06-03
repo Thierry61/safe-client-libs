@@ -17,7 +17,7 @@ use futures::{
 };
 use lazy_static::lazy_static;
 use log::{error, info, trace, warn};
-use quic_p2p::{self, Builder, Config as QuicP2pConfig, Event, Peer, QuicP2p, QuicP2pError, Token};
+use quic_p2p::{self, Config as QuicP2pConfig, Event, Peer, QuicP2p, QuicP2pError, Token};
 use rand::Rng;
 use safe_nd::{
     HandshakeRequest, HandshakeResponse, Message, MessageId, NodePublicId, PublicId, Request,
@@ -79,9 +79,13 @@ impl ConnectionGroup {
         let (node_tx, node_rx) = crossbeam_channel::unbounded();
         let (client_tx, _client_rx) = crossbeam_channel::unbounded();
 
-        let mut quic_p2p = Builder::new(quic_p2p::EventSenders { node_tx, client_tx })
-            .with_config(config)
-            .build()?;
+        // Initialise QuicP2p
+        let mut quic_p2p = unwrap!(QuicP2p::with_config(
+            quic_p2p::EventSenders { node_tx, client_tx },
+            Some(config),
+            Default::default(),
+            false
+        ));
 
         let mut initial_state = Bootstrapping {
             connection_hook,
